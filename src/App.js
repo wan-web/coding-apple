@@ -4,13 +4,16 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom';
+import data from './data';
 
 import Main from './pages/Main';
 import Detail from './pages/Detail';
 import Error from './pages/Error';
+import { useState } from 'react';
 
 
 function App() {
+  const [shoes, setShoes] = useState(data);
 
   const navigate = useNavigate();
 
@@ -28,10 +31,9 @@ function App() {
           </Nav>
         </Container>
       </Navbar>
-
       <Routes>
-        <Route path='/' element={<Main />}></Route>
-        <Route path='/detail' element={<Detail />}></Route>
+        <Route path='/' element={<Main shoes={shoes} />}></Route>
+        <Route path='/detail/:id' element={<Detail shoes={shoes}/>}></Route>
         <Route path='/event' element={<Event />}>
           <Route path='one' element={<div>첫 주문시 양배추즙 서비스</div>}/>
           <Route path='two' element={<div>생일기념 쿠폰받기</div>} />

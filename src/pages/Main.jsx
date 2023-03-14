@@ -1,22 +1,22 @@
 import React, {useState} from 'react'
 import Container from 'react-bootstrap/Container';
 import { Row, Col } from 'react-bootstrap';
-import data from '../data';
 import bg from '../img/bg.png';
+import { Link } from 'react-router-dom';
 
 const Item = ({shoes, img}) => {
   return (
     <Col>
-      <img width="80%" src={img} alt="사진"/>
-      <h4>{shoes.title}</h4>
-      <p>{shoes.price}</p>
+      <Link to={`/detail/${shoes.id}`}>
+        <img width="100%" src={img} alt="사진"/>
+        <h4>{shoes.title}</h4>
+        <p>{shoes.price}</p>
+      </Link>
     </Col>
   )
 }
 
-const Main = () => {
-
-  let [shoes, setShoes] = useState(data);
+const Main = ({shoes}) => {
 
   return (
     <div>
